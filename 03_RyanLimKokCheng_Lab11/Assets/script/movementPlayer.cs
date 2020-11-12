@@ -8,8 +8,8 @@ public class movementPlayer : MonoBehaviour
     float speed = 5.0f;
     float runspeed = 15f;
     float hitcounter = 0f;
-    public GameObject enemy;
     bool incontact = false;
+    public GameObject enemy;
     // Start is called before the first frame update
     void Start()
     {
@@ -34,13 +34,14 @@ public class movementPlayer : MonoBehaviour
             if (incontact == true)
             {
                     hitcounter++;
-                if (hitcounter == 5)
+                if (hitcounter > 5)
                 {
                     Destroy(enemy);
                 }
             }
             
         }
+
     }
     void OnCollisionEnter(Collision collision)
     {
@@ -49,12 +50,18 @@ public class movementPlayer : MonoBehaviour
             playerAnin.SetTrigger("Death");
         }
     }
-     void OnTriggerEnter(Collider enemy)
+     void OnTriggerEnter(Collider other)
     {
-        incontact = true;
+        if (other.gameObject.CompareTag("cube"))
+        {
+            incontact = true;
+        }
     }
-    void OnTriggerExit(Collider enemy)
+    void OnTriggerExit(Collider other)
     {
-        incontact = false;
+        if (other.gameObject.CompareTag("cube"))
+        {
+            incontact = false;
+        }
     }  
 }
