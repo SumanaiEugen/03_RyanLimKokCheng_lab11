@@ -6,7 +6,6 @@ public class movementPlayer : MonoBehaviour
 {
     Animator playerAnin;
     float speed = 5.0f;
-    float runspeed = 15f;
     float hitcounter = 0f;
     bool incontact = false;
     public GameObject enemy;
@@ -22,13 +21,44 @@ public class movementPlayer : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.W))
         {
             transform.Translate(Vector3.forward * Time.deltaTime * speed);
+            transform.rotation = Quaternion.Euler(0, 0, 0);
             playerAnin.SetBool("isStrafe", true);
         }
         if (Input.GetKeyUp(KeyCode.W))
         {
             playerAnin.SetBool("isStrafe", false);
         }
-        if(Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            transform.Translate(Vector3.forward * Time.deltaTime * speed);
+            transform.rotation = Quaternion.Euler(0, 180, 0);
+            playerAnin.SetBool("isStrafe", true);
+        }
+        if (Input.GetKeyUp(KeyCode.S))
+        {
+            playerAnin.SetBool("isStrafe", false);
+        }
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            transform.Translate(Vector3.forward * Time.deltaTime * speed);
+            transform.rotation = Quaternion.Euler(0, -90, 0);
+            playerAnin.SetBool("isStrafe", true);
+        }
+        if (Input.GetKeyUp(KeyCode.A))
+        {
+            playerAnin.SetBool("isStrafe", false);
+        }
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            transform.Translate(Vector3.forward * Time.deltaTime * speed);
+            transform.rotation = Quaternion.Euler(0, 90, 0);
+            playerAnin.SetBool("isStrafe", true);
+        }
+        if (Input.GetKeyUp(KeyCode.D))
+        {
+            playerAnin.SetBool("isStrafe", false);
+        }
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             playerAnin.SetTrigger("Attack");
             if (incontact == true)
